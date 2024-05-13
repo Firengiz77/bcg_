@@ -19,6 +19,8 @@ class StoreSliderRequest extends BaseRequest
             'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:20480',
 'title' => ['string'],
 'desc' => ['string'],
+'link' => ['string'],
+'buttonText' => ['string'],
 
         ];
     }

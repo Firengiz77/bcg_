@@ -37,7 +37,7 @@
                     <div class="row">
 
 
-                        <div class='col-12'> <div class='form-group'><label for='image' class='col-form-label'>Şəkil</label><input type='file' name='image' id='blog_cover_image' class='form-control' onchange='document.getElementById("imageImg").src = window.URL.createObjectURL(this.files[0])'><img id='imageImg' src='' width='20%' class='mt-2'/></div></div>
+                        <!-- <div class='col-12'> <div class='form-group'><label for='image' class='col-form-label'>Şəkil</label><input type='file' name='image' id='blog_cover_image' class='form-control' onchange='document.getElementById("imageImg").src = window.URL.createObjectURL(this.files[0])'><img id='imageImg' src='' width='20%' class='mt-2'/></div></div> -->
 <div class='col-12'><div class='form-group'>{{ Form::label('title', __('title'), array('class' => 'form-label')) }}{{ Form::text('title', null, array('class' => 'form-control', 'placeholder' => __('Enter title'), 'required' => 'required')) }}</div></div>
 <div class='col-12'><div class='form-group'>{{ Form::label('desc', __('desc'), array('class' => 'form-label')) }}{{ Form::text('desc', null, array('class' => 'form-control', 'placeholder' => __('Enter desc'), 'required' => 'required')) }}</div></div>
 

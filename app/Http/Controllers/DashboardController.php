@@ -42,8 +42,6 @@ class DashboardController extends Controller
     {
 
 
-
-
         $uri = url()->full();
         $segments = explode('/', str_replace(''.url('').'', '', $uri));
         $segments = $segments[1] ?? null;

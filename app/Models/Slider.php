@@ -19,13 +19,15 @@ class Slider extends Model
     'image',
 'title',
 'desc',
+'buttonText',
+'link'
 
     ];
 
     public $translatable = [
-
+        'buttonText',
             'title',
-'desc',
+    'desc',
 
     ];
 

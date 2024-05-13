@@ -43,10 +43,11 @@ class SliderRepository
                 } elseif ($image["code"] == 200) {
                     $slider->image = $image["data"];
                 }
-                            $slider->setTranslation('title', $request->lang??'az', $request->title);            $slider->setTranslation('desc', $request->lang??'az', $request->desc);
-
-
-
+        
+            $slider->setTranslation('title', $request->lang??'az', $request->title);  
+            $slider->setTranslation('desc', $request->lang??'az', $request->desc);
+            $slider->setTranslation('buttonText', $request->lang??'az', $request->buttonText); 
+            $slider->link = $request->link; 
 
 
             $slider->save();
@@ -101,7 +102,14 @@ class SliderRepository
                     Utility::deleteFile($slider->image);
                     $slider->image = $image["data"];
                 }
-                            $slider->setTranslation('title', $request->lang, $request->title);            $slider->setTranslation('desc', $request->lang, $request->desc);
+            
+                $slider->setTranslation('title', $request->lang, $request->title);  
+                $slider->setTranslation('desc', $request->lang, $request->desc);
+
+                $slider->setTranslation('buttonText', $request->lang, $request->buttonText); 
+                $slider->link = $request->link; 
+    
+    
             $slider->update();
 
             DB::commit();

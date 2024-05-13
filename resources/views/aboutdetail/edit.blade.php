@@ -70,14 +70,14 @@
 
 
 
-<div class='col-12'>
+<!-- <div class='col-12'>
 <div class='form-group'>
 <label for='image' class='col-form-label'>Şəkil</label>
 <input type='file' name='image' id='blog_cover_image' class='form-control' onchange='document.getElementById("imageImg").src = window.URL.createObjectURL(this.files[0])'>
 <img src='/public/{{$aboutdetail->image}}' width='200' class='mt-2'/>
 <img id='imageImg' src='' width='20%' class='mt-2'/>
 </div>
-</div>
+</div> -->
 
 
 

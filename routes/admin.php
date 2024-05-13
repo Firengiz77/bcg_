@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::group(['middleware' => ['verified']], function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['XSS']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['auth','XSS']);
    
     Route::get('profile', [DashboardController::class, 'profile'])->name('profile')->middleware(['auth', 'XSS']);
 
@@ -326,5 +326,50 @@ Route::post('disable-language', [LanguageController::class, 'disableLang'])->nam
           Route::delete('video/{id}', [\App\Http\Controllers\VideoController::class, 'destroy'])->name('video.destroy'); 
 
           Route::get('video/{id}/edit', [\App\Http\Controllers\VideoController::class, 'edit'])->name('video.edit'); 
+
+      
+
+
+          Route::post('project', [\App\Http\Controllers\ProjectController::class, 'store'])->name('project.store'); 
+
+          Route::get('projects', [\App\Http\Controllers\ProjectController::class, 'index'])->name('project.index'); 
+
+          Route::get('project/create', [\App\Http\Controllers\ProjectController::class, 'create'])->name('project.create'); 
+
+          Route::put('project/{id}', [\App\Http\Controllers\ProjectController::class, 'update'])->name('project.update'); 
+
+          Route::delete('project/{id}', [\App\Http\Controllers\ProjectController::class, 'destroy'])->name('project.destroy'); 
+
+          Route::get('project/{id}/edit', [\App\Http\Controllers\ProjectController::class, 'edit'])->name('project.edit'); 
+
+      
+
+
+          Route::post('projectattribute', [\App\Http\Controllers\ProjectAttributeController::class, 'store'])->name('projectattribute.store'); 
+
+          Route::get('projectattributes', [\App\Http\Controllers\ProjectAttributeController::class, 'index'])->name('projectattribute.index'); 
+
+          Route::get('projectattribute/create', [\App\Http\Controllers\ProjectAttributeController::class, 'create'])->name('projectattribute.create'); 
+
+          Route::put('projectattribute/{id}', [\App\Http\Controllers\ProjectAttributeController::class, 'update'])->name('projectattribute.update'); 
+
+          Route::delete('projectattribute/{id}', [\App\Http\Controllers\ProjectAttributeController::class, 'destroy'])->name('projectattribute.destroy'); 
+
+          Route::get('projectattribute/{id}/edit', [\App\Http\Controllers\ProjectAttributeController::class, 'edit'])->name('projectattribute.edit'); 
+
+      
+
+
+          Route::post('projectimage/{id}', [\App\Http\Controllers\ProjectImageController::class, 'store'])->name('projectimage.store'); 
+
+          Route::get('projectimages/{id}', [\App\Http\Controllers\ProjectImageController::class, 'index'])->name('projectimage.index'); 
+
+          Route::get('projectimage/create/{id}', [\App\Http\Controllers\ProjectImageController::class, 'create'])->name('projectimage.create'); 
+
+          Route::put('projectimage/{id}', [\App\Http\Controllers\ProjectImageController::class, 'update'])->name('projectimage.update'); 
+
+          Route::delete('projectimage/{id}', [\App\Http\Controllers\ProjectImageController::class, 'destroy'])->name('projectimage.destroy'); 
+
+          Route::get('projectimage/{id}/edit', [\App\Http\Controllers\ProjectImageController::class, 'edit'])->name('projectimage.edit'); 
 
       

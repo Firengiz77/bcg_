@@ -18,6 +18,8 @@ class UpdateSliderRequest extends BaseRequest
         return [
             'title' => ['string'],
 'desc' => ['string'],
+'link' => ['string'],
+'buttonText' => ['string'],
 
         ];
     }

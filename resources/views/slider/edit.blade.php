@@ -85,9 +85,26 @@
 <div class='col-12'>
 <div class='form-group'>
 {{ Form::label('desc', __('desc'), array('class' => 'form-label')) }}
-{{ Form::text('desc', $slider->getTranslation('desc', $code), array('class' => 'form-control', 'placeholder' => __('Enter desc'), 'required' => 'required')) }}
+{{ Form::textarea('desc', $slider->getTranslation('desc', $code), array('class' => 'form-control', 'placeholder' => __('Enter desc'), 'required' => 'required')) }}
 </div>
 </div>
+
+<div class='col-12'>
+<div class='form-group'>
+{{ Form::label('buttonText', __('Button text'), array('class' => 'form-label')) }}
+{{ Form::text('buttonText', $slider->getTranslation('buttonText', $code), array('class' => 'form-control', 'placeholder' => __('Enter buttonText'), 'required' => 'required')) }}
+</div>
+</div>
+
+
+<div class='col-12'>
+<div class='form-group'>
+{{ Form::label('link', __('link'), array('class' => 'form-label')) }}
+{{ Form::text('link', $slider->link, array('class' => 'form-control', 'placeholder' => __('Enter link'), 'required' => 'required')) }}
+</div>
+</div>
+
+
 
 
                                 </div>
