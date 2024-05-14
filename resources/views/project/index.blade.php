@@ -35,6 +35,8 @@
                             <thead>
                                 <tr>
 
+                                <th>{{ __('Title') }}</th>
+                                <th>{{ __('Description') }}</th>
                                     <th>{{ __('Created At') }}</th>
                                     <th class="text-right">{{ __('Action') }}</th>
                                 </tr>
@@ -44,7 +46,9 @@
                                     <tr data-name="{{ @$project->title }}">
 
 
+                                    <td>{{ $project->title }}</td>
 
+                                    <td>{!! substr($project->desc,0,50) !!} ...</td>
 
                                         <td>
                                             {{ \App\Models\Utility::dateFormat($project->created_at) }}
@@ -53,7 +57,7 @@
 
                                         <td class="Action">
                                             <div class="d-flex">
-                                            <a href="{{ route('projectimage.index', $product->id) }}" class="btn btn-sm btn-icon  bg-light-secondary me-2"  data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Image') }}">
+                                            <a href="{{ route('projectimage.index', $project->id) }}" class="btn btn-sm btn-icon  bg-light-secondary me-2"  data-bs-toggle="tooltip" data-bs-placement="top" title="{{ __('Image') }}">
                                                     <i  class="ti ti-photo-edit f-20"></i>
                                                 </a>
 

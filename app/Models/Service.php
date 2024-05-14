@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
@@ -18,18 +18,15 @@ class Service extends Model
 
     protected $fillable = [
     'name',
-'desc',
-'image',
-'category_id',
-'slug',
+    'desc',
+    'image',
 
     ];
 
     public $translatable = [
-
-            'name',
-'desc',
-'slug',
+    'name',
+    'desc',
+    'slug',
 
     ];
 
@@ -41,9 +38,13 @@ class Service extends Model
     }
 
 
-    public function getCategory(){
-        return $this->hasOne(Category::class,'id','category_id');
+    public function attribute()
+    {
+        return $this->hasMany('App\Models\ServiceAttribute', 'service_id', 'id');
     }
-    
 
+
+    public function getProductAttribute(){
+        return $this->hasMany(ServiceAttribute::class,'service_id','id');
+    }
 }

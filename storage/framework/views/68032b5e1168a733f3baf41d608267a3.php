@@ -40,11 +40,11 @@
 
 
                         <div class='col-12'><div class='form-group'><?php echo e(Form::label('country', __('country'), array('class' => 'form-label'))); ?><?php echo e(Form::text('country', null, array('class' => 'form-control', 'placeholder' => __('Enter country'), 'required' => 'required'))); ?></div></div>
-<div class='col-12'><div class='form-group'><?php echo e(Form::label('title', __('title'), array('class' => 'form-label'))); ?><?php echo e(Form::text('title', null, array('class' => 'form-control', 'placeholder' => __('Enter title'), 'required' => 'required'))); ?></div></div>
-<div class='col-12'><div class='form-group'><?php echo e(Form::label('status', __('status'), array('class' => 'form-label'))); ?><?php echo e(Form::text('status', null, array('class' => 'form-control', 'placeholder' => __('Enter status'), 'required' => 'required'))); ?></div></div>
-<div class='col-12'><div class='form-group'><?php echo e(Form::label('desc', __('desc'), array('class' => 'form-label'))); ?><?php echo e(Form::textarea('desc', null, array('class' => 'form-control  summernote-simple nicEdit', 'placeholder' => __('Enter desc'), 'required' => 'required'))); ?></div></div>
-<div class='col-12'> <div class='form-group'><label for='image' class='col-form-label'>Şəkil</label><input type='file' name='image' id='blog_cover_image' class='form-control' onchange='document.getElementById("imageImg").src = window.URL.createObjectURL(this.files[0])'><img id='imageImg' src='' width='20%' class='mt-2'/></div></div>
-<div class='col-12'> <div class='form-group'><label for='images' class='col-form-label'>images</label><input type='file' name='images' id='blog_cover_image' class='form-control' onchange='document.getElementById("imagesImg").src = window.URL.createObjectURL(this.files[0])'><img id='imagesImg' src='' width='20%' class='mt-2'/></div></div>
+    <div class='col-12'><div class='form-group'><?php echo e(Form::label('title', __('title'), array('class' => 'form-label'))); ?><?php echo e(Form::text('title', null, array('class' => 'form-control', 'placeholder' => __('Enter title'), 'required' => 'required'))); ?></div></div>
+    <div class='col-12'><div class='form-group'><?php echo e(Form::label('status', __('status'), array('class' => 'form-label'))); ?><?php echo e(Form::text('status', null, array('class' => 'form-control', 'placeholder' => __('Enter status'), 'required' => 'required'))); ?></div></div>
+    <div class='col-12'><div class='form-group'><?php echo e(Form::label('desc', __('desc'), array('class' => 'form-label'))); ?><?php echo e(Form::textarea('desc', null, array('class' => 'form-control  summernote-simple nicEdit', 'placeholder' => __('Enter desc'), 'required' => 'required'))); ?></div></div>
+    <div class='col-12'> <div class='form-group'><label for='images' class='col-form-label'>images</label><input type='file' multiple name='images[]' id='blog_cover_image' class='form-control' onchange='document.getElementById("imagesImg").src = window.URL.createObjectURL(this.files[0])'><img id='imagesImg' src='' width='20%' class='mt-2'/></div></div>
+
 
 <div class="form-group col-md-12">
                                 <div class="custom-fields" data-value="">

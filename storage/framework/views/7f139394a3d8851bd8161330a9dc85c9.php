@@ -34,6 +34,8 @@
                             <thead>
                                 <tr>
 
+                                <th><?php echo e(__('Title')); ?></th>
+                                <th><?php echo e(__('Description')); ?></th>
                                     <th><?php echo e(__('Created At')); ?></th>
                                     <th class="text-right"><?php echo e(__('Action')); ?></th>
                                 </tr>
@@ -43,7 +45,9 @@
                                     <tr data-name="<?php echo e(@$project->title); ?>">
 
 
+                                    <td><?php echo e($project->title); ?></td>
 
+                                    <td><?php echo substr($project->desc,0,50); ?> ...</td>
 
                                         <td>
                                             <?php echo e(\App\Models\Utility::dateFormat($project->created_at)); ?>
@@ -53,6 +57,10 @@
 
                                         <td class="Action">
                                             <div class="d-flex">
+                                            <a href="<?php echo e(route('projectimage.index', $project->id)); ?>" class="btn btn-sm btn-icon  bg-light-secondary me-2"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo e(__('Image')); ?>">
+                                                    <i  class="ti ti-photo-edit f-20"></i>
+                                                </a>
+
                                                 <a href="<?php echo e(route('project.edit', $project->id)); ?>" class="btn btn-sm btn-icon  bg-light-secondary me-2"  data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo e(__('Edit')); ?>">
                                                     <i  class="ti ti-edit f-20"></i>
                                                 </a>

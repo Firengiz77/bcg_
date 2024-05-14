@@ -99,16 +99,6 @@
 
 
 
-<div class='col-12'>
-<div class='form-group'>
-<label for='images' class='col-form-label'>images</label>
-<input type='file' name='images' id='blog_cover_image' class='form-control' onchange='document.getElementById("imagesImg").src = window.URL.createObjectURL(this.files[0])'>
-<img src='/public/{{$project->images}}' width='200' class='mt-2'/>
-<img id='imagesImg' src='' width='20%' class='mt-2'/>
-</div>
-</div>
-
-
 <div class="card form-group col-md-12">
                                 <div class="custom-fields" >
                                     <div class="card-header d-flex align-items-center justify-content-between">

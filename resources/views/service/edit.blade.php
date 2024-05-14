@@ -92,15 +92,97 @@
 </div>
 </div>
 
+<div class="card form-group col-md-12">
+                                <div class="custom-fields" >
+                                    <div class="card-header d-flex align-items-center justify-content-between">
+                                        <div class="">
+                                            <h5 class="">{{ __('Attributes') }}</h5>
 
-<div class='col-12'>
-<div class='form-group'>
-{{ Form::label('category_id', __('category_id'), array('class' => 'form-label')) }}
-{{ Form::select('category_id', $category,$service->getCategory->id, array('class' => 'form-control', 'placeholder' => __('Enter category_id'), 'required' => 'required')) }}
-</div>
-</div>
+                                        </div>
+                                        <button data-repeater-create type="button"
+                                            class="btn btn-sm btn-primary btn-icon m-1 float-end ms-2" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="{{ __('Create Custom Field') }}">
+                                            <i class="ti ti-plus mr-1"></i>
+                                        </button>
+                                    </div>
+                                    <div class="card-body table-border-style">
+                                            @csrf
+                                            <div class="table-responsive custom-field-table">
+
+                                                <table class="table dataTable-table" id="pc-dt-simple"
+                                                    data-repeater-list="fields">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>{{ __('Image') }}</th>
+                                                            <th>{{ __('Key') }}</th>
+                                                            <th>{{ __('Value') }}</th>
+
+                                                            <th class="text-right">{{ __('Action') }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                       
+                                                        @foreach ($service->attribute as $key => $attribute )
+                                                     
+                                                        <tr >
+                                                            <td>
+                                                           <div style="display:flex">
+                                                             <input type="file"  name="attribute[{{$key}}][image]"  class="form-control mb-0">
+                                                                <img src="/public/{{ $attribute->image }}" alt="" width="80px">
+                                                           </div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="hidden" class="id" name="attribute[{{$key}}][id]"  value="{{$attribute->id}}" />
+
+                                                                <input type="text" name="attribute[{{$key}}][key]" value="{{ $attribute->getTranslation('key', $code) }}" class="form-control mb-0"
+                                                                    required />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="attribute[{{$key}}][value]"
+                                                                    class="form-control mb-0"  value="{{$attribute->getTranslation('value', $code)}}" required />
+                                                            </td>
 
 
+                                                            <td class="text-center">
+                                                              
+                                                                <a href="{{route('projectattribute.destroy',$attribute->id)}}" class="delete-icon"><i
+                                                                        class="fas fa-trash text-danger"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+
+                                                        <tr data-repeater-item>
+                                                        <td>
+                                                                <input type="file" required name="image" id="" class="form-control mb-0">
+                                                            </td>
+
+                                                            <td>
+
+                                                                <input type="text" name="key" class="form-control mb-0"
+                                                                    required />
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="value"
+                                                                    class="form-control mb-0" required />
+                                                            </td>
+
+
+                                                            <td class="text-center">
+                                                                <a data-repeater-delete class="delete-icon"><i
+                                                                        class="fas fa-trash text-danger"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            
 
 
 
@@ -121,6 +203,63 @@
     </div>
 @endsection
 @push('script-page')
+
+<script src="{{ asset('/public/js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('/public/js/repeater.js') }}"></script>
+
+
+<script>
+
+    // $(document).on('change','.SITE_RTL',function(){
+    //     $()
+    // });
+    $(document).ready(function() {
+        var $dragAndDrop = $("body .custom-fields tbody").sortable({
+            handle: '.sort-handler'
+        });
+
+        var $repeater = $('.custom-fields').repeater({
+            initEmpty: true,
+            defaultValues: {},
+            show: function() {
+                $(this).slideDown();
+
+                console.log(this.deyer);
+                var eleId = $(this).find('input[type=hidden]').val();
+                if (eleId > 7 || eleId == '') {
+                    $(this).find(".field_type option[value='file']").remove();
+                    $(this).find(".field_type option[value='select']").remove();
+                }
+            },
+            hide: function(deleteElement) {
+                if (confirm('{{ __('Are you sure ? ') }}')) {
+                    $(this).slideUp(deleteElement);
+                }
+            },
+            ready: function(setIndexes) {
+                $dragAndDrop.on('drop', setIndexes);
+            },
+            isFirstItemUndeletable: true
+        });
+
+        var value = $(".custom-fields").attr('data-value');
+        if (typeof value != 'undefined' && value.length != 0) {
+            value = JSON.parse(value);
+            $repeater.setList(value);
+        }
+
+        $.each($('[data-repeater-item]'), function(index, val) {
+            var elementId = $(this).find('input[type=hidden]').val();
+            if (elementId <= 7) {
+                $.each($(this).find('.field_type'), function(index, val) {
+                    $(this).prop('disabled', 'disabled');
+                });
+                $(this).find('.delete-icon').remove();
+            }
+        });
+    });
+</script>
+
     <script>
         $(document).ready(function () {
             $(document).on('keyup', '.search-user', function () {

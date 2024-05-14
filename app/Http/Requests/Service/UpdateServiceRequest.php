@@ -17,9 +17,7 @@ class UpdateServiceRequest extends BaseRequest
     {
         return [
             'name' => ['string'],
-'desc' => ['string'],
-'category_id' => ['string'],
-'slug' => ['string'],
+          'desc' => ['string'],
 
         ];
     }

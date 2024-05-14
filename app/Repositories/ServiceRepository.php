@@ -7,7 +7,7 @@ use App\Models\Utility;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\ImageRepository;
-
+use App\Models\ServiceAttribute;
 use Throwable;
 
 class ServiceRepository
@@ -21,8 +21,6 @@ class ServiceRepository
 
     }
 
-
-
     public function store($request): array
     {
         DB::beginTransaction();
@@ -31,9 +29,9 @@ class ServiceRepository
 
             $service = new Service();
 
-
             $service->setTranslation('name', $request->lang??'az', $request->name);   
             $service->setTranslation('desc', $request->lang??'az', $request->desc);
+
                 $image = $this->imageRepository->upload($request, "Service", "image");
                 if (!$image["status"]) {
                     return [
@@ -44,14 +42,37 @@ class ServiceRepository
                 } elseif ($image["code"] == 200) {
                     $service->image = $image["data"];
                 }
-                          $service->category_id = $request->category_id;
-            $service->setTranslation('slug', $request->lang??'az', $request->slug);
-
-
-
-
-
+                         
             $service->save();
+      
+            if (is_array($request->fields)) {
+        
+                foreach ($request->fields as $key => $value) {
+                
+                    $attribute = new ServiceAttribute();
+
+                 if (isset($value['image'])) {
+                    $imageUploadResult = $this->imageRepository->uploadAttribute($value, "ServiceAttribute", "image");
+
+                    if (!$imageUploadResult["status"]) {
+                        return [
+                            "status" => false,
+                            "code" => 502,
+                            "message" => __("Image Attribute Error.")
+                        ];
+                    } elseif ($imageUploadResult["code"] == 200) {
+                        $attribute->image = $imageUploadResult["data"];
+                    }
+                }
+
+                    $attribute->setTranslation("key",  $request->lang ?? 'az', $value['key']);
+                    $attribute->setTranslation("value",  $request->lang ?? 'az', $value['value']);
+                    $attribute->service_id  = $service->id;
+
+                    $attribute->save();
+                }
+            }
+
 
 
 
@@ -91,8 +112,10 @@ class ServiceRepository
 
         try {
 
-            $service->setTranslation('name', $request->lang, $request->name);            $service->setTranslation('desc', $request->lang, $request->desc);
-                $image = $this->imageRepository->upload($request, "Service", "image");
+            $service->setTranslation('name', $request->lang, $request->name);       
+            $service->setTranslation('desc', $request->lang, $request->desc);
+                
+            $image = $this->imageRepository->upload($request, "Service", "image");
                 if (!$image["status"]) {
                     return [
                         "status" => false,
@@ -103,9 +126,64 @@ class ServiceRepository
                     Utility::deleteFile($service->image);
                     $service->image = $image["data"];
                 }
-                          $service->category_id = $request->category_id;
-            $service->setTranslation('slug', $request->lang, $request->slug);
+                     
+
+
             $service->update();
+
+
+            if($request->attribute){
+                foreach ($request->attribute as $key => $value) {
+            
+                    $attribute = ServiceAttribute::find($value['id']);
+                   
+                   
+                   
+                    if(array_key_exists("image",$value)){
+                        $imageUploadResult = $this->imageRepository->uploadAttribute($value, "ServiceAttribute", "image");
+                        if (!$imageUploadResult["status"]) {
+                            return [
+                                "status" => false,
+                                "code" => 502,
+                                "message" => __("Image Attribute 1 Error.")
+                            ];
+                        } elseif ($imageUploadResult["code"] == 200) {
+                            Utility::deleteFile($attribute->image);
+                            $attribute->image = $imageUploadResult["data"];
+                        }    
+                    }
+                 
+                  
+                    $attribute->setTranslation("key",  $request->lang, $value['key']);
+                    $attribute->setTranslation("value",  $request->lang, $value['value']);
+                    $attribute->save();
+                
+                }
+            }
+            
+            
+            if($request->fields){
+                foreach ($request->fields as $key => $value) {
+                    $attribute = new ServiceAttribute();
+                    $imageUploadResult2 = $this->imageRepository->uploadAttribute($value, "ServiceAttribute", "image");
+                    if (!$imageUploadResult2["status"]) {
+                        return [
+                            "status" => false,
+                            "code" => 502,
+                            "message" => __("Image Attribute 2 Error.")
+                        ];
+                    } elseif ($imageUploadResult2["code"] == 200) {
+                        Utility::deleteFile($attribute->image);
+                        $attribute->image = $imageUploadResult2["data"];
+                    }
+
+                    $attribute->setTranslation("key", $request->lang, $value['key']);
+                    $attribute->setTranslation("value",  $request->lang, $value['value']);
+
+                    $attribute->service_id  = $service->id;
+                    $attribute->save();
+                }
+            }
 
             DB::commit();
 
@@ -142,11 +220,7 @@ class ServiceRepository
 
         try {
             Utility::deleteFile($service->image);
-                
-
-
-
-
+            
             $service->delete();
 
             DB::commit();

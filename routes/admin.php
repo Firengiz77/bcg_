@@ -254,18 +254,7 @@ Route::post('disable-language', [LanguageController::class, 'disableLang'])->nam
       
 
 
-          Route::post('category', [\App\Http\Controllers\CategoryController::class, 'store'])->name('category.store'); 
-
-          Route::get('categorys', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category.index'); 
-
-          Route::get('category/create', [\App\Http\Controllers\CategoryController::class, 'create'])->name('category.create'); 
-
-          Route::put('category/{id}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('category.update'); 
-
-          Route::delete('category/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.destroy'); 
-
-          Route::get('category/{id}/edit', [\App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit'); 
-
+      
       
 
 
@@ -373,3 +362,51 @@ Route::post('disable-language', [LanguageController::class, 'disableLang'])->nam
           Route::get('projectimage/{id}/edit', [\App\Http\Controllers\ProjectImageController::class, 'edit'])->name('projectimage.edit'); 
 
       
+
+
+          Route::post('equipment', [\App\Http\Controllers\EquipmentController::class, 'store'])->name('equipment.store'); 
+
+          Route::get('equipments', [\App\Http\Controllers\EquipmentController::class, 'index'])->name('equipment.index'); 
+
+          Route::get('equipment/create', [\App\Http\Controllers\EquipmentController::class, 'create'])->name('equipment.create'); 
+
+          Route::put('equipment/{id}', [\App\Http\Controllers\EquipmentController::class, 'update'])->name('equipment.update'); 
+
+          Route::delete('equipment/{id}', [\App\Http\Controllers\EquipmentController::class, 'destroy'])->name('equipment.destroy'); 
+
+          Route::get('equipment/{id}/edit', [\App\Http\Controllers\EquipmentController::class, 'edit'])->name('equipment.edit'); 
+
+      
+
+
+          Route::post('equipmentimage/{id}', [\App\Http\Controllers\EquipmentImageController::class, 'store'])->name('equipmentimage.store'); 
+
+          Route::get('equipmentimages/{id}', [\App\Http\Controllers\EquipmentImageController::class, 'index'])->name('equipmentimage.index'); 
+
+          Route::get('equipmentimage/create/{id}', [\App\Http\Controllers\EquipmentImageController::class, 'create'])->name('equipmentimage.create'); 
+
+          Route::put('equipmentimage/{id}', [\App\Http\Controllers\EquipmentImageController::class, 'update'])->name('equipmentimage.update'); 
+
+          Route::delete('equipmentimage/{id}', [\App\Http\Controllers\EquipmentImageController::class, 'destroy'])->name('equipmentimage.destroy'); 
+
+          Route::get('equipmentimage/{id}/edit', [\App\Http\Controllers\EquipmentImageController::class, 'edit'])->name('equipmentimage.edit'); 
+
+      
+
+
+          Route::post('serviceattribute', [\App\Http\Controllers\ServiceAttributeController::class, 'store'])->name('serviceattribute.store'); 
+
+          Route::get('serviceattributes', [\App\Http\Controllers\ServiceAttributeController::class, 'index'])->name('serviceattribute.index'); 
+
+          Route::get('serviceattribute/create', [\App\Http\Controllers\ServiceAttributeController::class, 'create'])->name('serviceattribute.create'); 
+
+          Route::put('serviceattribute/{id}', [\App\Http\Controllers\ServiceAttributeController::class, 'update'])->name('serviceattribute.update'); 
+
+          Route::delete('serviceattribute/{id}', [\App\Http\Controllers\ServiceAttributeController::class, 'destroy'])->name('serviceattribute.destroy'); 
+
+          Route::get('serviceattribute/{id}/edit', [\App\Http\Controllers\ServiceAttributeController::class, 'edit'])->name('serviceattribute.edit'); 
+
+      
+
+
+   

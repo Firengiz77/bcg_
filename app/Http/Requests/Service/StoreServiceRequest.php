@@ -18,9 +18,7 @@ class StoreServiceRequest extends BaseRequest
         return [
             'name' => ['string'],
 'desc' => ['string'],
-'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf|max:20480',
-'category_id' => ['string'],
-'slug' => ['string'],
+'image' => 'mimes:jpeg,png,jpg,gif,svg,pdf,webp|max:20480',
 
         ];
     }

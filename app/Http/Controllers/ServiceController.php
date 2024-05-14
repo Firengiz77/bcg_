@@ -6,7 +6,7 @@ use App\Http\Requests\Service\StoreServiceRequest;
 use App\Http\Requests\Service\UpdateServiceRequest;
 use App\Models\Service;
 use App\Repositories\ServiceRepository;
-use App\Models\Category;
+
 
 class ServiceController extends Controller
 {
@@ -34,8 +34,8 @@ class ServiceController extends Controller
      */
     public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $category=Category::pluck('name','id');
-        return view('service.create',compact('category'));
+    
+        return view('service.create');
 
     }
 
@@ -74,8 +74,7 @@ class ServiceController extends Controller
     public function edit($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $service = Service::findorFail($id);
-        $category=Category::pluck('name','id');
-        return view('service.edit', compact('service','category'));
+        return view('service.edit', compact('service'));
     }
 
     /**

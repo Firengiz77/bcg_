@@ -61,8 +61,46 @@ class ImageRepository
         }
     }
 
-
-
+    public function uploadAttribute($value, $model, $input): array
+    {
+        try {
+            // Check if $value[$input] contains file data
+            if (isset($value[$input])) {
+                $extension = $value[$input]->getClientOriginalExtension();
+    
+                // Check if the file is valid
+                if ($value[$input]->isValid()) {
+                    // Generate file name
+                    $fileNameToStore = strtolower($model) . '_' . $input . time() . '.' . $extension;
+                    $settings = Utility::getStorageSetting();
+                    $dir = 'uploads/' . strtolower($model) . '/';
+    
+                    // Move the uploaded file to the specified directory
+                    $value[$input]->move($dir, $fileNameToStore);
+    
+                    // Assuming you want to return the URL of the uploaded file
+                    $url = $dir . $fileNameToStore;
+    
+                    return ['status' => true, 'code' => 200, 'data' => $url];
+                } else {
+                    return [
+                        'status' => false,
+                        'code' => 502,
+                        'message' => __("Invalid file.")
+                    ];
+                }
+            } else {
+                return ['status' => false, 'code' => 201, 'data' => null];
+            }
+        } catch (Throwable $e) {
+            return [
+                'status' => false,
+                'code' => 502,
+                'message' => __('errors.502')
+            ];
+        }
+    }
+    
 
 
     public function delete($image)

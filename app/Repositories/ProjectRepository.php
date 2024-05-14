@@ -47,34 +47,34 @@ class ProjectRepository
                     $project->image = $image["data"];
                 }
           
-            
-                if ($request->hasFile('images')) {
-
-                    foreach ($request->file('images') as $image) {
-    
-                        $settings = Utility::getStorageSetting();
-                        if ($settings['storage_setting'] == 'local') {
-                            $dir = 'uploads/' . strtolower('ProductImage') . '/';
-    
-                        } else {
-                            $dir = 'uploads/' . strtolower('ProductImage') . '/';
-                        }
-    
-                        $path = $image->store(strtolower('ProductImage'), ['disk' => 'uploads']);
-    
-                        $productimage = new ProjectImage();
-                        $productimage->image = 'uploads/' . $path;
-                        $productimage->product_id = $project->id;
-                        $productimage->save();
-                    }
-    
-                }
-    
-
-                
-
-
             $project->save();
+
+         
+
+            if ($request->hasFile('images')) {
+               
+                foreach ($request->file('images') as $image) {
+
+                    $settings = Utility::getStorageSetting();
+                    if ($settings['storage_setting'] == 'local') {
+                        $dir = 'uploads/' . strtolower('ProductImage') . '/';
+
+                    } else {
+                        $dir = 'uploads/' . strtolower('ProductImage') . '/';
+                    }
+
+                    $path = $image->store(strtolower('ProductImage'), ['disk' => 'uploads']);
+                 
+                    $productimage = new ProjectImage();
+                    $productimage->image = 'uploads/' . $path;
+                    $productimage->project_id = $project->id;
+                    $productimage->save();
+                }
+
+            }
+
+
+
 
             if($request->fields){
         
@@ -195,9 +195,6 @@ class ProjectRepository
             Utility::deleteFile($project->image);
                 Utility::deleteFile($project->images);
                 
-
-
-
 
             $project->delete();
 

@@ -35,6 +35,7 @@
                             <thead>
                                 <tr>
 
+                                <th>{{ __('Image') }}</th>
                                     <th>{{ __('Created At') }}</th>
                                     <th class="text-right">{{ __('Action') }}</th>
                                 </tr>
@@ -44,6 +45,9 @@
                                     <tr data-name="{{ @$projectimage->title }}">
 
 
+                                    <td>
+                                        <img src="/public/{{ $projectimage->image }}" alt="">
+                                    </td>
 
 
                                         <td>

@@ -58,23 +58,10 @@
                             </div>
                             <div class="card-body table-border-style">
 
-                                <div class="d-flex justify-content-end">
-
-                                </div>
                                 <div class="row">
 
 
                             
-
-
-
-
-<div class='col-12'>
-<div class='form-group'>
-{{ Form::label('project_id', __('project_id'), array('class' => 'form-label')) }}
-{{ Form::text('project_id', null, array('class' => 'form-control', 'placeholder' => __('Enter project_id'), 'required' => 'required')) }}
-</div>
-</div>
 
 
 

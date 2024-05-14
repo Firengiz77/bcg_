@@ -37,7 +37,7 @@
                     <div class="row">
 
 
-                        <div class='col-12'><div class='form-group'>{{ Form::label('project_id', __('project_id'), array('class' => 'form-label')) }}{{ Form::text('project_id', null, array('class' => 'form-control', 'placeholder' => __('Enter project_id'), 'required' => 'required')) }}</div></div>
+                    
 <div class='col-12'> <div class='form-group'><label for='image' class='col-form-label'>Şəkil</label><input type='file' name='image' id='blog_cover_image' class='form-control' onchange='document.getElementById("imageImg").src = window.URL.createObjectURL(this.files[0])'><img id='imageImg' src='' width='20%' class='mt-2'/></div></div>
 
 

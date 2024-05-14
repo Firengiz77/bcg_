@@ -109,6 +109,20 @@
                                 </li>
 
 
+                                <li
+                                    class="dash-item dash-hasmenu {{ Request::route()->getName() == 'equipment.index' || request()->is('admin/equipment*') ? ' active dash-trigger' : 'collapsed' }}">
+                                    <a href="{{ route('equipment.index') }}"
+                                       class="dash-link {{ request()->is('equipment') ? 'active' : '' }}">
+                                <span class="dash-micon">
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-news"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" /><path d="M8 8l4 0" /><path d="M8 12l4 0" /><path d="M8 16l4 0" /></svg>
+                                </span>
+                                        <span class="dash-mtext">{{ __('equipment') }}</span>
+                                    </a>
+                                </li>
+
+
+
+
 
                                 <li
                                     class="dash-item dash-hasmenu {{ Request::route()->getName() == 'tag.index' || request()->is('admin/tag*') ? ' active dash-trigger' : 'collapsed' }}">
@@ -206,18 +220,7 @@
                                     </a>
                                 </li>
 
-
-                                <li
-                                    class="dash-item dash-hasmenu {{ Request::route()->getName() == 'category.index' || request()->is('admin/category*') ? ' active dash-trigger' : 'collapsed' }}">
-                                    <a href="{{ route('category.index') }}"
-                                       class="dash-link {{ request()->is('category') ? 'active' : '' }}">
-                                <span class="dash-micon">
-                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-news"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" /><path d="M8 8l4 0" /><path d="M8 12l4 0" /><path d="M8 16l4 0" /></svg>
-                                </span>
-                                        <span class="dash-mtext">{{ __('category') }}</span>
-                                    </a>
-                                </li>
-
+                                
                                 <li
                                     class="dash-item dash-hasmenu {{ Request::route()->getName() == 'service.index' || request()->is('admin/service*') ? ' active dash-trigger' : 'collapsed' }}">
                                     <a href="{{ route('service.index') }}"
